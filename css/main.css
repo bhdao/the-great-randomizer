@@ -1,0 +1,275 @@
+*,
+* > * {
+  font-family: "PT Sans Narrow", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+ul,
+li {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  /* justify-content: center; */
+  text-align: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  max-width: 1000px;
+  background: rgb(59, 59, 59);
+  background: linear-gradient(
+    0deg,
+    rgb(131, 166, 203) 27%,
+    rgb(255, 255, 255) 100%
+  );
+}
+
+#main_container {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+#content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#content > div {
+  display: flex;
+  /* min-height: 600px; */
+  min-width: 200px;
+  height: 100%;
+}
+
+#ui {
+  border-radius: 20px;
+  width: 59%;
+}
+
+#output {
+  width: auto;
+  overflow: hidden;
+  border-radius: 20px;
+  width: 40%;
+}
+
+#output > .bg {
+  width: 100%;
+  height: 100%;
+  background-image: url(../assets/bgs/1.jpg);
+  background-size: cover;
+  background-position: 50%, 50%;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  filter: blur(2px) opacity(80%);
+}
+
+.h1 {
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+
+#bg_cred {
+  font-weight: bold;
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+}
+bg_cred a,
+#its-me a {
+  color: white;
+  text-decoration: none;
+}
+
+#its-me {
+  font-weight: bold;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  color: white;
+}
+
+#bg_cred a:hover {
+  color: rgb(255, 85, 0);
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.category h2 {
+  margin: 0;
+}
+
+.category checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+}
+
+.horizontal {
+  display: flex;
+}
+
+.horizontal h2,
+.horizontal .arrow,
+.horizontal div {
+  display: inline-flex;
+  align-items: center;
+}
+
+.horizontal > .arrow_container {
+  border-radius: 100%;
+  background-color: rgb(0, 0, 0);
+  padding: 5px;
+  outline: 3px solid white;
+}
+
+.arrow_container {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+img.arrow {
+  user-select: none;
+  pointer-events: none;
+  width: auto;
+  height: 20px;
+  filter: invert(1);
+  transition: cubic-bezier(0.19, 1.62, 0.51, 0.79);
+  transition-duration: 0.3s;
+}
+
+img.arrow.down {
+  transform: rotate(90deg);
+  transition: cubic-bezier(0.19, 1.62, 0.51, 0.79);
+  transition-duration: 0.3s;
+}
+
+.label.title {
+  position: relative;
+  min-width: 50px;
+  justify-content: center;
+  align-items: center;
+  background-color: bisque;
+  padding: 20px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.label.title > h4 {
+  pointer-events: none;
+}
+
+.label.title .pop-up {
+  position: absolute;
+  left: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+.label.title .pop-up span {
+  background-color: white;
+  padding: 15px;
+  border-radius: 100%;
+  font-weight: bold;
+  font-size: larger;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+}
+
+.horizontal.sub_cat {
+  margin-bottom: 20px;
+}
+
+.label.title,
+.data {
+  display: flex;
+}
+
+.data {
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.data div {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  flex-wrap: wrap;
+  padding: 4px 12px;
+  padding-bottom: 6px;
+  text-align: center;
+  margin: 8px;
+  border-radius: 5px;
+  align-items: center;
+  font-weight: bold;
+}
+
+.all_cat,
+.sub_cat {
+  transition: cubic-bezier(0.19, 1.62, 0.51, 0.79);
+  transition-duration: 0.35s;
+}
+
+.all_cat.hidden,
+.sub_cat.hidden {
+  transform: translateY(-100%);
+  transition: cubic-bezier(0.19, 1.62, 0.51, 0.79);
+  transition-duration: 0.35s;
+}
+
+.container {
+  overflow: hidden;
+}
+
+.bubble-in {
+  animation: bubble;
+  animation-duration: 0.2s;
+}
+
+.bubble {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes bubble {
+  0% {
+    transform: scale(0.95)
+  }
+  
+  10% {
+    transform: scale(1.2)
+  }
+  
+  90% {
+    transform: scale(1)
+  }
+  
+  95% {
+    transform: scale(0.95)
+  }
+
+  100% {
+    transform: scale(1)
+  }
+}
