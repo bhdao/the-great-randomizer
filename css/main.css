@@ -139,7 +139,13 @@ bg_cred a,
 
 .arrow_container {
   cursor: pointer;
-  margin-right: 5px;
+  padding: 6px;
+  margin-bottom: 10px;
+}
+
+.horizontal > h2 {
+  margin-bottom: 10px;
+  margin-left: 5px;
 }
 
 img.arrow {
@@ -222,6 +228,7 @@ img.arrow.down {
   border-radius: 5px;
   align-items: center;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .all_cat,
@@ -273,3 +280,51 @@ img.arrow.down {
     transform: scale(1)
   }
 }
+
+.data div.select {
+  outline: 3px solid lightgreen;
+}
+
+.data div.hide {
+  opacity: 50%;
+}
+
+.cat-tabs {
+  display: flex;
+  align-items: flex-end;
+  align-self: end;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.tab {
+  margin-left: 2px;
+  background: white;
+  border-radius: 5px 5px 0 0;
+  transition: 0.1s;
+  justify-content: flex-end;
+}
+
+.tab:hover {
+  padding: 0 10px;
+  transition: 0.2s;
+}
+
+
+.cat-tabs .tab p {
+  font-weight: bold;
+  margin: 0;
+  font-size: large;
+  padding: 5px 10px;
+  transition-duration: 0.5;
+}
+
+.tab p:hover {
+  padding-bottom: 10px;
+  transition-duration: 0.5;
+}
+
+.category hr {
+  margin-top: 0;
+}
+

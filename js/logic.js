@@ -157,7 +157,7 @@ const addClickEventAll = (selector, fx) => {
 
 const printTarget = (e) => {
   console.log(e.target);
-  
+
 };
 
 // addClickEventAll('.horizontal.sub_cat', cascadeRender,);
@@ -174,3 +174,18 @@ const addBubble = (e) => {
 // addClickEvent('.label.title', addAB, [2,2])
 // addClickEvent('.label.title', console.log, undefined)
 addClickEventAll('.label.title', addBubble);
+
+const cycleModes = (e) => {
+  let el = e.target;
+  let currentMode = el.classList.value;
+  if (currentMode.includes("select")) {
+    toggle_class(el, "select");
+    toggle_class(el, "hide");
+  } else if (currentMode.includes("hide")) {
+    toggle_class(el, "hide");
+  } else {
+    toggle_class(el, "select");
+  }
+}
+
+addClickEventAll('.data div', cycleModes);
