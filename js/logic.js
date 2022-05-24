@@ -189,3 +189,24 @@ const cycleModes = (e) => {
 }
 
 addClickEventAll('.data div', cycleModes);
+
+const singleOut = {};
+
+const getSingle = (arr) => {
+  let len = arr.length - 1;
+  return arr[Math.round(Math.random()*len)];
+}
+
+singleOut.subCat = (subcat) => {
+  let selection = dqsa(`[data-category="${subcat}"] .data div`);
+  console.log(selection);
+  let selected = getSingle(selection).innerText
+  console.log(selected);
+  return selected;
+}
+
+const cascadeRun = (fx, arr=[]) => {
+  for (let x in arr) {
+      fx(x);
+  };
+};
