@@ -260,7 +260,7 @@ Hair.subCats = [
 let Pizza = new Category("Pizza");
 Pizza.subCats = [
   { name: "Size", data: ["Small", "Medium", "Large", "XL", "XXL", "XXXL", "Personal"] },
-  { name: "Crust", data: ["Thin", "Thick", "Garlic"] },
+  { name: "Crust", data: ["Thin", "Thick", "Cheesy Garlic"] },
   { name: "Sauce", data: ["Red", "White"]},
   { name: "Topping-1", data: ["Pepperoni", "Sausage", "Bacon", "Chicken", "Pineapple", "Artichoke", "Extra Cheese", "Veggie Medley"]},
   { name: "Topping-2", data: ["Pepperoni", "Sausage", "Bacon", "Chicken", "Pineapple", "Artichoke", "Extra Cheese", "Veggie Medley"]},
@@ -339,7 +339,7 @@ CatHandler.getSubCatVals = function (mainCat, subCat) {
 }
 
 CatHandler.selectSubCatVal = (mainCat, subCat) => {
-  const vals = CatHandler.getSubCatVals(dingus, dongus);
+  const vals = CatHandler.getSubCatVals(maincAt, subCat);
   console.log(vals);
   return getSingle([...vals]);
 }
@@ -351,8 +351,8 @@ const getSubCatVals = function (mainCat, subCat) {
   return validVals;
 }
 
-const selectSubCatVal = (dingus, dongus) => {
-  let vals = getSubCatVals(dingus, dongus);
+const selectSubCatVal = (mainCat, subCat) => {
+  let vals = getSubCatVals(mainCat, subCat);
   let selected = getSingle(vals);
   console.log(selected);
   return selected;
@@ -415,8 +415,22 @@ const renderSelectedValue = (Maincat, Subcat, val) => {
   </span>
 </div>
   `
-  addToEnd(dqs("#inner-output")[0], output)
+  addToEnd(dqs("#inner-output"), output)
 }
 
-//Template to 
-CatHandler.getActiveMainCats().forEach((e)=>{console.log(e.dataset.name)})
+//Template to
+//Get main cat names
+const main_categories = CatHandler.getActiveMainCats();
+//Get subcats in DOM
+const sub_categories = main_categories.forEach((e) => {
+  const mainCatName = e.dataset.name;
+  const DOMsubCatsData = dqsa(`.${mainCatName} .data`);
+  return DOMsubCatsData;
+  // const getValidVals = dqsa(`.${e.dataset.name} [data-subCat] .data div:not(.hide)`);
+  // const validVals = [...getValidVals];
+  // return validVals;
+
+//Get subcat names based on main cat
+})
+
+
