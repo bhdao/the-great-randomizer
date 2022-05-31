@@ -252,18 +252,26 @@ class Category {
 
 let Hair = new Category("Hair");
 Hair.subCats = [
-  { name: "Color", data: ["Black", "Brown", "Green", "Blue", "Red", "Pink", "Blonde", "Silver", "White", "Pink"] },
-  { name: "Length", data: ["Short", "Medium", "Long", "None"] },
-  { name: "Straightness", data: ["Straight", "Wavy", "Curly"] }
+  { name: "Color", data: ["Black", "Brown", "Green", "Blue", "Red", "Pink", "Blonde", "Silver", "White", "Pink"], mainCatName: Hair.name},
+  { name: "Length", data: ["Short", "Medium", "Long", "None"], mainCatName: Hair.name},
+  { name: "Straightness", data: ["Straight", "Wavy", "Curly"], mainCatName: Hair.name}
 ];
 
 let Pizza = new Category("Pizza");
 Pizza.subCats = [
-  { name: "Size", data: ["Small", "Medium", "Large", "XL", "XXL", "XXXL", "Personal"] },
-  { name: "Crust", data: ["Thin", "Thick", "Cheesy Garlic"] },
-  { name: "Sauce", data: ["Red", "White"]},
-  { name: "Topping-1", data: ["Pepperoni", "Sausage", "Bacon", "Chicken", "Pineapple", "Artichoke", "Extra Cheese", "Veggie Medley"]},
-  { name: "Topping-2", data: ["Pepperoni", "Sausage", "Bacon", "Chicken", "Pineapple", "Artichoke", "Extra Cheese", "Veggie Medley"]},
+  { name: "Size", data: ["Small", "Medium", "Large", "XL", "XXL", "XXXL", "Personal"], mainCatName: Pizza.name},
+  { name: "Crust", data: ["Thin", "Thick", "Cheesy Garlic"], mainCatName: Pizza.name },
+  { name: "Sauce", data: ["Red", "White"], mainCatName: Pizza.name},
+  { name: "Topping-1", data: ["Pepperoni", "Sausage", "Bacon", "Chicken", "Pineapple", "Artichoke", "Extra Cheese", "Veggie Medley"], mainCatName: Pizza.name},
+  { name: "Topping-2", data: ["Pepperoni", "Sausage", "Bacon", "Chicken", "Pineapple", "Artichoke", "Extra Cheese", "Veggie Medley"], mainCatName: Pizza.name},
+];
+
+let Pasta = new Category("Pasta");
+Pasta.subCats = [
+  { name: "Size", data: ["Small", "Medium", "Large", "XL", "XXL", "XXXL", "Personal"], mainCatName: Pasta.name },
+  { name: "Sauce", data: ["Marinara", "Alfredo"], mainCatName: Pasta.name},
+  { name: "Protein", data: ["Beef Meatball", "Veggie Meatball", "Prosciutto"], mainCatName: Pasta.name},
+  { name: "Noodle", data: ["Spaghetti", "Rotini", "Stelle", "Farfalle"], mainCatName: Pasta.name}
 ];
 
 
@@ -308,13 +316,13 @@ CatHandler.addSubCat = function (mainCat, subCat) {
         <div class="pop-up">
         </div>
       </div>
-      <div class="data">
+      <div class="data ${subCat.name}" >
       </div>
     </div>`)
 }
 
 CatHandler.addSubCatVal = function (subCatObject, val) {
-  const dataContainer = dqs(`[data-subcat=${subCatObject.name}] .data`);
+  const dataContainer = dqs(`.${subCatObject.mainCatName} [data-subcat=${subCatObject.name}] .data`);
   const newVal = `<div class="val">${val}</div>`;
   addToEnd(dataContainer, newVal);
 }
@@ -395,6 +403,15 @@ CatHandler.populateSubCat(Pizza.subCats[1], Pizza.subCats[1].data);
 CatHandler.populateSubCat(Pizza.subCats[2], Pizza.subCats[2].data);
 CatHandler.populateSubCat(Pizza.subCats[3], Pizza.subCats[3].data);
 CatHandler.populateSubCat(Pizza.subCats[4], Pizza.subCats[4].data);
+CatHandler.addMainCat(Pasta);
+CatHandler.addSubCat(Pasta, Pasta.subCats[0]);
+CatHandler.addSubCat(Pasta, Pasta.subCats[1]);
+CatHandler.addSubCat(Pasta, Pasta.subCats[2]);
+CatHandler.addSubCat(Pasta, Pasta.subCats[3]);
+CatHandler.populateSubCat(Pasta.subCats[0], Pasta.subCats[0].data);
+CatHandler.populateSubCat(Pasta.subCats[1], Pasta.subCats[1].data);
+CatHandler.populateSubCat(Pasta.subCats[2], Pasta.subCats[2].data);
+CatHandler.populateSubCat(Pasta.subCats[3], Pasta.subCats[3].data);
 
 // dqsa('div')forEach().addEventListener('click', (e) => {
 //   console.log(e);
@@ -422,15 +439,32 @@ const renderSelectedValue = (Maincat, Subcat, val) => {
 //Get main cat names
 const main_categories = CatHandler.getActiveMainCats();
 //Get subcats in DOM
-const sub_categories = main_categories.forEach((e) => {
-  const mainCatName = e.dataset.name;
-  const DOMsubCatsData = dqsa(`.${mainCatName} .data`);
-  return DOMsubCatsData;
-  // const getValidVals = dqsa(`.${e.dataset.name} [data-subCat] .data div:not(.hide)`);
-  // const validVals = [...getValidVals];
-  // return validVals;
 
-//Get subcat names based on main cat
+// const sub_categories = main_categories.forEach((e) => {
+//   const mainCatName = e.dataset.name;
+//   console.log('MainCat name: ' + mainCatName);
+//   const DOMsubCatsData = dqsa(`.${mainCatName} .data`);
+//   console.log('DOMsubcatsdata: ' + DOMsubCatsData);
+//   return DOMsubCatsData;
+//   // const getValidVals = dqsa(`.${e.dataset.name} [data-subCat] .data div:not(.hide)`);
+//   // const validVals = [...getValidVals];
+//   // return validVals;
+
+// //Get subcat names based on main cat
+// })
+
+const DOMgetSubCats = (MainCatDOMEl) => {
+  console.log([...dqsa(`.${MainCatDOMEl.dataset.name} .data`)]);
+  return [...dqsa(`.${MainCatDOMEl.dataset.name} .data`)]
+}
+
+let subCats = main_categories.map(DOMgetSubCats);
+
+subCats[0]
+
+subCats.forEach((e) => {
+  e.forEach((x) => {
+    console.log(getSingle(x.children).innerText);
+    return getSingle(x.children).innerText;
+  })
 })
-
-
